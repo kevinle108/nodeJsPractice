@@ -6,10 +6,11 @@ const locationURL = 'https://enterpriseservice.pullapart.com/Location';
 const makeURL = 'https://inventoryservice.pullapart.com/Make/';
 
 const https = require('https');
+const colors = require('colors');
 
 
-// getLocationData(locationURL);
-getMakeData(makeURL);
+getLocationData(locationURL);
+// getMakeData(makeURL);
 
 function getLocationData(locationURL) {
     https.get('https://enterpriseservice.pullapart.com/Location', response => {
@@ -19,7 +20,8 @@ function getLocationData(locationURL) {
         response.on('end', () => {
             const data = JSON.parse(body);
             data.forEach(location => {
-                console.log(`${location.locationID}: ${location.locationName}`);
+                // console.log('hello'.green)
+                console.log(`${location.locationID}:`.green + ` ${location.locationName}`.red);
             });
         });
     })
